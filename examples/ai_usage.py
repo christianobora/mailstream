@@ -17,24 +17,31 @@ def strip_html(html: str) -> str:
 # GPT email processing
 async def process_email_with_gpt(email_subject: str, email_body: str) -> str:
     prompt = f"""
-You are a job application assistant. A new email has been received with the subject: "{email_subject}".
-Here is the email content:
-{email_body}
-Based on the content, decide one of the following actions:
-- Reject the application.
-- Offer an interview.
-- Accept the application.
-- Request additional information.
+    You are a job applicant managing responses from various companies regarding your job applications. 
+    A new email has been received with the following details:
+    
+    Subject: "{email_subject}"
+    Body: {email_body}
 
-Return your decision in the following format:
-- Action: <Reject/Interview/Accept/Request>
-- Reason: <Brief explanation>
-"""
+    Based on the content of this email, decide the appropriate action. Choose one of the following:
+    - Reject: If the email is a rejection notice.
+    - Offer Acceptance: If the email contains a job offer and requires your acceptance.
+    - Interview: If the email invites you for an interview or provides scheduling details.
+    - Request Information: If the email asks you to provide additional details or documents.
+    - Ignore: If the email is unrelated or does not require a response.
+
+    Respond in the following format:
+    ---
+    Action: <Reject/Offer Acceptance/Interview/Request Information/Ignore>
+    Reason: <Brief explanation of why this action was chosen>
+    Next Steps: <Optional - Describe any actions you recommend the applicant take>
+    ---
+    """
     try:
         response = openai.ChatCompletion.create(
             model="gpt-4",
             messages=[
-                {"role": "system", "content": "You are a helpful assistant."},
+                {"role": "system", "content": "You are a helpful assistant for managing job applications."},
                 {"role": "user", "content": prompt},
             ],
         )
