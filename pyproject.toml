@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "mailstream"
-version = "0.1.1"
+version = "0.1.2"
 description = "Async IMAP client for streaming email messages"
 readme = "README.md"
 requires-python = ">=3.8"
@@ -19,6 +19,10 @@ dev = [
     "mypy>=1.0.0",
     "black>=24.10.0",
     "flake8>=7.1.1",
+]
+examples = [
+    "openai>=1.0.0",
+    "beautifulsoup4>=4.10.0",
 ]
 
 [tool.setuptools.packages.find]

@@ -1,6 +1,7 @@
 import asyncio
 from mailstream import MailStreamClient, Config
 
+
 async def main():
     # Basic configuration
     config = Config(
@@ -8,7 +9,7 @@ async def main():
         port=993,
         email="your_email@example.com",
         password="your_password",
-        debug=False  # Set to True to enable debug logs
+        debug=False,  # Set to True to enable debug logs
     )
 
     # Initialize MailStreamClient
@@ -32,6 +33,7 @@ async def main():
         # Close the connection
         await client.close()
         print("Disconnected from the IMAP server.")
+
 
 if __name__ == "__main__":
     asyncio.run(main())

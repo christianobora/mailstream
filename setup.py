@@ -6,7 +6,7 @@ with open("README.md", "r", encoding="utf-8") as f:
 
 setup(
     name="mailstream",
-    version="0.1.1",
+    version="0.1.2",
     author="Christian Obora",
     author_email="christianobora@uchicago.edu",
     description="Async IMAP client for streaming email messages",
@@ -33,7 +33,11 @@ setup(
             "mypy>=1.0.0",
             "black>=24.10.0",
             "flake8>=4.0.0",
-        ]
+        ],
+        "examples": [
+            "openai>=0.11.0",
+            "beautifulsoup4>=4.10.0",
+        ],
     },
     keywords="imap email streaming library",
 )

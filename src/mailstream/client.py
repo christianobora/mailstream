@@ -15,7 +15,7 @@ class Config:
     """IMAP Client Configuration"""
 
     host: str
-    port: int
+    port: int = 993
     email: str
     password: str
     mailbox: str = "INBOX"

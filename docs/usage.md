@@ -12,7 +12,9 @@ config = Config(
     host="imap.example.com",  # Replace with your IMAP server hostname
     port=993,                 # Default IMAP SSL port
     email="your_email@example.com",
-    password="your_password"
+    password="your_password",
+    mailbox="INBOX",          # Default mailbox
+    debug=True                # Enable debug mode
 )
 
 client = MailStreamClient(config)
@@ -91,8 +93,10 @@ from mailstream import ConnectionError, AuthenticationError
 try:
     client = MailStreamClient(
         host='imap.example.com',
+        port=993,
         email='your_email@example.com',
-        password='your_password'
+        password='your_password',
+        debug=True
     )
     await client.connect()
 except (ConnectionError, AuthenticationError) as e:

@@ -31,7 +31,8 @@ config = Config(
     host="imap.example.com",
     port=993,
     email="your_email@example.com",
-    password="your_password"
+    password="your_password",
+    debug=True
 )
 
 async def main():
@@ -59,6 +60,7 @@ asyncio.run(main())
 - `password`: Login password (required)
 - `port`: IMAP server port (default: 993)
 - `mailbox`: Target mailbox (default: 'INBOX')
+- `debug`: Enable debug mode (default: False)
 
 ## Advanced Usage
 
@@ -90,6 +92,9 @@ listener2_queue = client.subscribe()
 await client.wait_for_updates(poll_interval=10.0)
 ```
 
+## Examples
+For more examples, including advanced usage, please see the [examples](examples) directory.
+
 ## Error Handling
 
 ```python
@@ -98,8 +103,10 @@ from mailstream import ConnectionError, AuthenticationError
 try:
     client = MailStreamClient(
         host='imap.example.com',
+        port=993,
         email='your_email@example.com',
-        password='your_password'
+        password='your_password',
+        debug=True
     )
     await client.connect()
 except (ConnectionError, AuthenticationError) as e:
@@ -108,7 +115,7 @@ except (ConnectionError, AuthenticationError) as e:
 
 ## Contributing
 
-Contributions are welcome! Please see our contributing guidelines for more details.
+Contributions are welcome! Please see our [contributing guidelines](docs/development.md) for more details.
 
 ## License
 
