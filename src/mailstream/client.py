@@ -137,3 +137,18 @@ class MailStreamClient:
         except Exception as e:
             self._logger.error(f"Error fetching mail: {e}")
             raise FetchError(f"Error parsing email: {e}")
+        
+    async def close(self):
+        """Close the IMAP connection and clean up resources."""
+        self._logger.info("Closing IMAP connection and cleaning up resources...")
+        try:
+            if self._client:
+                self._logger.debug("Logging out from IMAP server...")
+                await self._client.logout()
+                self._logger.info("Logged out successfully.")
+        except Exception as e:
+            self._logger.error(f"Error during logout: {e}")
+        finally:
+            self._client = None
+            self._listeners.clear()
+            self._logger.info("All resources cleaned up.")
