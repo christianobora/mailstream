@@ -15,9 +15,9 @@ class Config:
     """IMAP Client Configuration"""
 
     host: str
-    port: int = 993
     email: str
     password: str
+    port: int = 993
     mailbox: str = "INBOX"
     debug: bool = False
 
@@ -137,7 +137,7 @@ class MailStreamClient:
         except Exception as e:
             self._logger.error(f"Error fetching mail: {e}")
             raise FetchError(f"Error parsing email: {e}")
-        
+
     async def close(self):
         """Close the IMAP connection and clean up resources."""
         self._logger.info("Closing IMAP connection and cleaning up resources...")
