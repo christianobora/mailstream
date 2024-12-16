@@ -1,7 +1,6 @@
 import asyncio
 from mailstream import MailStreamClient, Config
 
-
 async def main():
     # Basic configuration
     config = Config(

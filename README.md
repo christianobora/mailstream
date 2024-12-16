@@ -39,6 +39,9 @@ async def main():
     client = MailStreamClient(config)
     await client.connect()
 
+    # Start wait_for_updates in the background
+    asyncio.create_task(client.wait_for_updates())
+
     # Subscribe to new emails
     listener = client.subscribe()
     
@@ -89,7 +92,7 @@ listener2_queue = client.subscribe()
 ### Waiting for New Emails
 
 ```python
-await client.wait_for_updates(poll_interval=10.0)
+await client.wait_for_updates()
 ```
 
 ## Examples
